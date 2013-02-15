@@ -8,7 +8,7 @@ package Net::POP3S;
 
 use vars qw ( $VERSION @ISA );
 
-$VERSION = "0.01";
+$VERSION = "0.02";
 
 use base qw ( Net::POP3 );
 use Net::Cmd;  # import CMD_OK, CMD_MORE, ...
@@ -102,7 +102,7 @@ sub new {
     ($capa = $obj->capa
      and $capa->{STLS}
      and ($obj->command('STLS')->response() == CMD_OK)
-     and $obj->ssl_star(\%ssl_args))
+     and $obj->ssl_start(\%ssl_args))
        or do {
 	 $obj->set_status(500, ["Cannot start SSL session"]);
 	 $obj->close();

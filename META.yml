@@ -21,4 +21,4 @@ requires:
   Authen::SASL: 2.15
   IO::Socket::SSL: 1
   Net::POP3: 2
-version: 0.01
+version: 0.02
