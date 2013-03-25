@@ -8,7 +8,7 @@ package Net::POP3S;
 
 use vars qw ( $VERSION @ISA );
 
-$VERSION = "0.02";
+$VERSION = "0.03";
 
 use base qw ( Net::POP3 );
 use Net::Cmd;  # import CMD_OK, CMD_MORE, ...
@@ -42,6 +42,9 @@ sub new {
   my $hosts = defined $host ? $host : $NetConfig{pop3_hosts};
   my $obj;
   my @localport = exists $arg{ResvPort} ? (LocalPort => $arg{ResvPort}) : ();
+
+  # eliminate IO::Socket::SSL from @ISA for multiple call of new.
+  @ISA = grep { !/IO::Socket::SSL/ } @ISA;
 
   my $h;
   foreach $h (@{ref($hosts) ? $hosts : [$hosts]}) {

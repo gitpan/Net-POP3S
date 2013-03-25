@@ -7,3 +7,6 @@ Revision history for Perl extension Net::POP3S.
 0.02  Fri Feb 15 16:01:20 2013
 	- Fix ssl_start() typo
 
+0.03  Fri Mar 25 18:00:00 2013
+	- Fix new() for multiple call
+
