@@ -1,12 +1,12 @@
 {
    "abstract" : "SSL/STARTTLS support for Net::POP3",
    "author" : [
-      "Tomo <tomo@cpan.org>"
+      "Tomo <tomo_at_cpan.org>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "ExtUtils::MakeMaker version 6.58, CPAN::Meta::Converter version 2.110930001",
    "license" : [
-      "perl"
+      "unknown"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -38,6 +38,6 @@
          }
       }
    },
-   "release_status" : "beta",
-   "version" : "0.02"
+   "release_status" : "stable",
+   "version" : "0.04"
 }

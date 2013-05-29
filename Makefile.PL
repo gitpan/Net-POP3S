@@ -12,5 +12,5 @@ WriteMakefile(
 			},
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Net/POP3S.pm', # retrieve abstract from module
-       AUTHOR         => 'Tomo <tomo@cpan.org>') : ()),
+       AUTHOR         => 'Tomo <tomo_at_cpan.org>') : ()),
 );

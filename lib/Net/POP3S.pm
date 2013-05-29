@@ -8,7 +8,7 @@ package Net::POP3S;
 
 use vars qw ( $VERSION @ISA );
 
-$VERSION = "0.03";
+$VERSION = "0.04";
 
 use base qw ( Net::POP3 );
 use Net::Cmd;  # import CMD_OK, CMD_MORE, ...
@@ -103,7 +103,7 @@ sub new {
   if (defined($ssl) && $ssl =~ /starttls|stls/i ) {
      my $capa;
     ($capa = $obj->capa
-     and $capa->{STLS}
+     and exists $capa->{STLS}
      and ($obj->command('STLS')->response() == CMD_OK)
      and $obj->ssl_start(\%ssl_args))
        or do {
@@ -296,12 +296,14 @@ L<Authen::SASL>
 
 =head1 AUTHOR
 
-Tomo.M <tomo at cpan.org>
+Tomo.M E<lt>tomo at cpan orgE<gt>
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2013 Tomo.M All rights reserved.
-This program is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+Copyright (C) 2013 by Tomo
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.8 or,
+at your option, any later version of Perl 5 you may have available.
 
 =cut
