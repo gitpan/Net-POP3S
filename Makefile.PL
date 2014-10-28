@@ -8,7 +8,7 @@ WriteMakefile(
     PREREQ_PM         => {
 			'Net::POP3'	=> 2.0,
 			'IO::Socket::SSL' => 1.0,
-			'Authen::SASL' => 2.15,
+			'Authen::SASL' => 2.0,
 			},
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Net/POP3S.pm', # retrieve abstract from module

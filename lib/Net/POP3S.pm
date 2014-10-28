@@ -8,7 +8,7 @@ package Net::POP3S;
 
 use vars qw ( $VERSION @ISA );
 
-$VERSION = "0.04";
+$VERSION = "0.05";
 
 use base qw ( Net::POP3 );
 use Net::Cmd;  # import CMD_OK, CMD_MORE, ...
@@ -41,21 +41,25 @@ sub new {
 
   my $hosts = defined $host ? $host : $NetConfig{pop3_hosts};
   my $obj;
-  my @localport = exists $arg{ResvPort} ? (LocalPort => $arg{ResvPort}) : ();
 
   # eliminate IO::Socket::SSL from @ISA for multiple call of new.
   @ISA = grep { !/IO::Socket::SSL/ } @ISA;
 
+  my %_args = map { +"$_" => $arg{$_} } grep {! /^SSL/} keys %arg;
+
   my $h;
+  $_args{PeerPort} = $_args{Port} || 'pop3(110)';
+  $_args{Proto} = 'tcp';
+  $_args{Timeout} = defined $_args{Timeout} ? $_args{Timeout} : 120;
+  if (exists $_args{ResvPort}) {
+      $_args{LocalPort} = delete $_args{ResvPort};
+  }
+
   foreach $h (@{ref($hosts) ? $hosts : [$hosts]}) {
-    $obj = $type->SUPER::new(
-      PeerAddr => ($host = $h),
-      PeerPort => $arg{Port} || 'pop3(110)',
-      Proto     => 'tcp',
-      @localport,
-      Timeout   => defined $arg{Timeout}
-      ? $arg{Timeout}
-      : 120
+      $_args{PeerAddr} = ($host = $h);
+
+      $obj = $type->SUPER::new(
+	  %_args
       )
       and last;
   }

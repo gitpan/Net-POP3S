@@ -14,3 +14,6 @@ Revision history for Perl extension Net::POP3S.
 	- Fix new() for STLS initiation bug.
 		(Thanks Tanaka Daisuke <dtanaka sannet.ad.jp>)
 
+0.05  Fri Oct 24 18:25:00 2014
+	- Fix new() for Net::SMTPS bug Ticket #99743 resemblance.
+		(thanks <alexz opmantek.com>)
